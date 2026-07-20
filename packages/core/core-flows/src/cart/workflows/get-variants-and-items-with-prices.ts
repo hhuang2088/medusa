@@ -94,7 +94,7 @@ export const prepareVariantsAndItemsWithPricesStep = createStep(
     const priceNotFound: string[] = []
     const variantNotFoundOrPublished: string[] = []
 
-    const items = (inputItems ?? cart.items ?? []).map((item) => {
+    const resolvedItems = (inputItems ?? cart.items ?? []).map((item) => {
       const item_ = item as any
       const idLike =
         (item as CartLineItemDTO).id ?? simpleHash(JSON.stringify(item))
@@ -124,31 +124,12 @@ export const prepareVariantsAndItemsWithPricesStep = createStep(
         variant.calculated_price = calculatedPriceSet
       }
 
-      const input: PrepareLineItemDataInput = {
-        item: item_,
-        variant: variant,
-        cartId: cart.id,
-        unitPrice: item_.unit_price,
-        isTaxInclusive:
-          item_.is_tax_inclusive ??
-          calculatedPriceSet?.is_calculated_price_tax_inclusive,
-        isCustomPrice: isCustomPrice,
-      }
-
-      if (variant && !isCustomPrice) {
-        input.unitPrice = calculatedPriceSet.calculated_amount
-        input.isTaxInclusive =
-          calculatedPriceSet.is_calculated_price_tax_inclusive
-      }
-
-      const preparedItem = prepareLineItemData(input)
-
-      return {
-        selector: { id: (item_ as CartLineItemDTO).id },
-        data: preparedItem as Partial<UpdateLineItemDTO>,
-      }
+      return { item: item_, variant, calculatedPriceSet, isCustomPrice }
     })
 
+    // The validation errors are thrown before building the line items, otherwise
+    // an invalid variant or a missing price surfaces as an opaque error from
+    // `prepareLineItemData` instead of the intended validation error.
     if (variantNotFoundOrPublished.length > 0) {
       throw new MedusaError(
         MedusaError.Types.INVALID_DATA,
@@ -163,6 +144,34 @@ export const prepareVariantsAndItemsWithPricesStep = createStep(
         `Variants with IDs ${priceNotFound.join(", ")} do not have a price`
       )
     }
+
+    const items = resolvedItems.map(
+      ({ item: item_, variant, calculatedPriceSet, isCustomPrice }) => {
+        const input: PrepareLineItemDataInput = {
+          item: item_,
+          variant: variant,
+          cartId: cart.id,
+          unitPrice: item_.unit_price,
+          isTaxInclusive:
+            item_.is_tax_inclusive ??
+            calculatedPriceSet?.is_calculated_price_tax_inclusive,
+          isCustomPrice: isCustomPrice,
+        }
+
+        if (variant && !isCustomPrice && calculatedPriceSet) {
+          input.unitPrice = calculatedPriceSet.calculated_amount
+          input.isTaxInclusive =
+            calculatedPriceSet.is_calculated_price_tax_inclusive
+        }
+
+        const preparedItem = prepareLineItemData(input)
+
+        return {
+          selector: { id: (item_ as CartLineItemDTO).id },
+          data: preparedItem as Partial<UpdateLineItemDTO>,
+        }
+      }
+    )
 
     const result: GetVariantsAndItemsWithPricesWorkflowOutput = {
       variants: variantsData,
