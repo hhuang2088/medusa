@@ -1,5 +1,14 @@
 # @medusajs/product
 
+## 2.20.0
+
+### Patch Changes
+
+- [#16530](https://github.com/medusajs/medusa/pull/16530) [`184f222fb32b913778ce75fdd61164ca038ec03d`](https://github.com/medusajs/medusa/commit/184f222fb32b913778ce75fdd61164ca038ec03d) Thanks [@NicolasGorga](https://github.com/NicolasGorga)! - fix(product): remove duplicate query call
+
+- Updated dependencies [[`785fd2b8a978201638a4d8d5ae9eea483958c0fb`](https://github.com/medusajs/medusa/commit/785fd2b8a978201638a4d8d5ae9eea483958c0fb)]:
+  - @medusajs/framework@2.20.0
+
 ## 2.19.0
 
 ### Patch Changes

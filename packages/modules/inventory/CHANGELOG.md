@@ -1,5 +1,14 @@
 # @medusajs/inventory-next
 
+## 2.20.0
+
+### Patch Changes
+
+- [#16461](https://github.com/medusajs/medusa/pull/16461) [`f3b3bd838ed53b6b2e1adead27d6b1006ea6e6e4`](https://github.com/medusajs/medusa/commit/f3b3bd838ed53b6b2e1adead27d6b1006ea6e6e4) Thanks [@NicolasGorga](https://github.com/NicolasGorga)! - feat(inventory,link-modules,medusa,types,core-flows): support fractional inventory quantities and unit of measure
+
+- Updated dependencies [[`785fd2b8a978201638a4d8d5ae9eea483958c0fb`](https://github.com/medusajs/medusa/commit/785fd2b8a978201638a4d8d5ae9eea483958c0fb)]:
+  - @medusajs/framework@2.20.0
+
 ## 2.19.0
 
 ### Patch Changes
