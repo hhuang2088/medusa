@@ -1,5 +1,18 @@
 # @medusajs/payment
 
+## 2.22.2
+
+### Patch Changes
+
+- [`33dbbfc8c7bc7272119f9ddb9554107884750f72`](undefined) - fix(payment): Keep Medusa Payments session amounts in the smallest unit, handle deleted account holders, and always save payment methods for the session's account holder
+
+- [`2b1234bd1dc79b75a31293c13b1837e971e74d6c`](undefined) - fix(payment): disable payment providers that are no longer registered on startup
+
+- [`33dbbfc8c7bc7272119f9ddb9554107884750f72`](undefined) - fix(payment): Update Medusa Payments to Stripe SDK 23 and send the payment method types to allow as `allowed_payment_method_types`
+
+- Updated dependencies [[`ca881e5e758c49cfcbac4130d7e626dc06f439a6`](https://github.com/medusajs/medusa/commit/ca881e5e758c49cfcbac4130d7e626dc06f439a6), [`9d55082bf9706e45b148100808f4d4550b9105bc`](https://github.com/medusajs/medusa/commit/9d55082bf9706e45b148100808f4d4550b9105bc), [`26e58070c1661c14aedc02ee6cfb0b2bb28d497b`](https://github.com/medusajs/medusa/commit/26e58070c1661c14aedc02ee6cfb0b2bb28d497b)]:
+  - @medusajs/framework@2.22.2
+
 ## 2.22.1
 
 ### Patch Changes

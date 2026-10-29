@@ -1,5 +1,16 @@
 # @medusajs/search
 
+## 2.22.2
+
+### Patch Changes
+
+- [`56ea83b5ade4683256956316395f6e9f2b74e965`](undefined) - fix(search): return empty results for Cloud indexes with no documents, report rejected queries as invalid data, and keep typo tolerance for queries with short words
+
+- [`56ea83b5ade4683256956316395f6e9f2b74e965`](undefined) - fix(search): page Cloud search results with offset and pack the total count and stats facet aggregations into one query
+
+- Updated dependencies [[`ca881e5e758c49cfcbac4130d7e626dc06f439a6`](https://github.com/medusajs/medusa/commit/ca881e5e758c49cfcbac4130d7e626dc06f439a6), [`9d55082bf9706e45b148100808f4d4550b9105bc`](https://github.com/medusajs/medusa/commit/9d55082bf9706e45b148100808f4d4550b9105bc), [`26e58070c1661c14aedc02ee6cfb0b2bb28d497b`](https://github.com/medusajs/medusa/commit/26e58070c1661c14aedc02ee6cfb0b2bb28d497b)]:
+  - @medusajs/framework@2.22.2
+
 ## 2.22.1
 
 ### Patch Changes
